@@ -11,3 +11,5 @@
 
 probably gonna just take the color and fonts off #1-2 and put them into the last one  
 I like the idea of having patterns in the background - not sure how I should be placing them tho
+
+fonts: Satoshi (sans-serif), AustinItalic
