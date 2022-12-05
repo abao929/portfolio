@@ -1,9 +1,8 @@
 import React from 'react'
-import { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import Project from './components/Project'
+import Projects from './components/Projects'
 import Title from './components/Title'
-
-type Props = {}
 
 const theme = {
   primary: '#816b56',
@@ -11,10 +10,23 @@ const theme = {
   bg: '#f3eee9',
 }
 
-export default function Main({}: Props) {
+const Container = styled.div`
+  background-color: ${(props) => props.theme.bg};
+`
+
+export default function Main() {
   return (
     <ThemeProvider theme={theme}>
-      <Title />
+      <Container>
+        {/* <Title /> */}
+        {/* <Projects></Projects> */}
+        <Project
+          title={'Personas & Storyboarding'}
+          desc={'not entirely sure what i am supposed to put for this section'}
+          link={'https://sombersheep77.github.io/uiux-project-1/'}
+          img={'cit.jpg'}
+        ></Project>
+      </Container>
     </ThemeProvider>
   )
 }

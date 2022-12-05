@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Personas & Storyboarding",
+    "month": "September",
+    "time": "2 weeks",
+    "link": "https://sombersheep77.github.io/uiux-project-1/",
+    "img": "cit.jpg"
+  },
+  {
+    "title": "Responsive Redesign",
+    "month": "October",
+    "time": "2 weeks",
+    "link": "https://sombersheep77.github.io/uiux-project-2/",
+    "img": "redesign.png"
+  },
+  {
+    "title": "Development",
+    "month": "November",
+    "time": "3 weeks",
+    "link": "https://sombersheep77.github.io/ivrogne/",
+    "img": "ivrogne.jpg"
+  }
+]
