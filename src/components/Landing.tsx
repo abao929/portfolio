@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import useMousePosition from '../hooks/MousePosition'
 import useWindowDimensions from '../hooks/WindowSize'
@@ -28,14 +27,6 @@ const Curtain = styled.div`
       color: ${(props) => props.theme.primary};
     }
   }
-`
-
-const Text = styled.div<{ shift: number; isLeft: boolean }>`
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font: 400 italic 6vw 'Bodoni Mona';
 `
 
 export default function Landing() {
