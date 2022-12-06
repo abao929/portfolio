@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import Project from './Project'
+
+const star = require('../assets/icons/star.svg')
 
 type Props = {}
 
@@ -10,11 +13,12 @@ const ovalHeight = 36
 const ovalWidth = 24
 
 const Stripes = styled.div`
+  z-index: -2;
   position: absolute;
   height: 100%;
   left: 0;
-  width: calc(78vw);
-  left: 11vw;
+  width: calc(88vw);
+  left: 6vw;
   /* border: 1px solid blue; */
   background-image: linear-gradient(
       to left,
@@ -50,16 +54,26 @@ const Stripes = styled.div`
   background-position-x: calc((88vw - 2px) / 8 / 2), calc((88vw - 2px) / 8); */
 `
 
+// const Middle = styled.div`
+//   position: absolute;
+//   height: 100%;
+//   left: 30vw;
+//   width: 40vw;
+//   background-color: ${(props) => props.theme.bg};
+// `
+
 const Middle = styled.div`
   position: absolute;
   height: 100%;
-  left: 30vw;
-  width: 40vw;
+  left: 25vw;
+  width: 50vw;
   background-color: ${(props) => props.theme.bg};
+  z-index: -1;
 `
 
 const SemiCircle = styled.div`
   position: relative;
+  /* position: absolute; */
   height: ${circleHeight}vw;
   width: calc(${circleWidth}vw - ${2 * circlePadding}rem);
 
@@ -75,6 +89,24 @@ const SemiCircle = styled.div`
 
   background-clip: content-box;
   box-sizing: content-box;
+
+  .star {
+    position: absolute;
+    left: 25%;
+    bottom: 0;
+    width: 2rem;
+    height: 2rem;
+    transform: translate(0%, 50%);
+    z-index: 10;
+    background-color: ${(props) => props.theme.bg};
+    /* background-color: blue; */
+    padding: 0 0.25em;
+    /* fill: red; */
+    path {
+      fill: ${(props) => props.theme.primary};
+      stroke: ${(props) => props.theme.primary};
+    }
+  }
 `
 
 const ShapeContainer = styled.div`
@@ -84,12 +116,14 @@ const ShapeContainer = styled.div`
   flex-direction: column;
   align-items: center;
   /* border: 1px solid blue; */
-  margin-top: 20vh;
+  padding: 10vh 0;
 `
 
 const Oval = styled.div`
-  position: relative;
-  top: ${-ovalHeight + (circleWidth - circleHeight + 2) / 2}vw;
+  /* position: relative; */
+  position: absolute;
+  /* top: ${-ovalHeight + (circleWidth - circleHeight + 2) / 2}vw; */
+  margin-top: -${(circleWidth - circleHeight) / 2}vw;
   height: ${ovalHeight}vw;
   width: ${ovalWidth}vw;
   border: 1px solid ${(props) => props.theme.primary};
@@ -97,33 +131,73 @@ const Oval = styled.div`
   transform: rotate(-45deg);
 `
 
+const ProjectContainer = styled.div``
+
 const Text = styled.div`
   font: 400 italic 6vw 'Bodoni Mona';
   color: ${(props) => props.theme.primary};
 `
+const pathToImages = './assets/images/'
+
+const Container = styled.div`
+  position: relative;
+`
 
 export default function Projects({}: Props) {
+  const [projectData, setProjectData] = useState<Project[]>([])
+
+  const getProjectData = () => {
+    fetch('projects.json')
+      .then((r) => {
+        return r.json()
+      })
+      .then((json: Project[]) => {
+        // json.map((project) => {
+        //   project.img = `${pathToImages}${project.img}`
+        //   return project
+        // })
+        setProjectData(json)
+      })
+  }
+
+  useEffect(() => {
+    getProjectData()
+  }, [])
+
   return (
-    <div>
-      <Stripes></Stripes>
-      <Middle>
-        <ShapeContainer>
-          <SemiCircle>
-            <Text>ui/ux</Text>
-            <Text>projects</Text>
-          </SemiCircle>
-          <Oval></Oval>
-        </ShapeContainer>
-        <div className='what'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </div>
-      </Middle>
-    </div>
+    <Container>
+      {/* <Stripes></Stripes>
+      <Middle></Middle> */}
+      <ShapeContainer>
+        <SemiCircle>
+          <Text>ui/ux</Text>
+          <Text>projects</Text>
+          <img src={star} alt='' className='star' />
+          {/* <svg
+            width='128'
+            height='128'
+            viewBox='0 0 128 128'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+            className='star'
+          >
+            <path
+              d='M127.207 64.0003C127.471 63.9999 127.735 63.9999 128 64.0002C127.735 64.0006 127.471 64.0007 127.207 64.0003C77.2374 64.0816 64.0675 78.8457 64.0003 127.207C64.0008 127.47 64.0008 127.735 64.0004 128C64 127.735 64 127.47 64.0003 127.207C63.9191 77.2373 49.1545 64.0674 0.793136 64.0002C0.52978 64.0006 0.265403 64.0007 0 64.0003C0.265377 63.9999 0.529755 63.9998 0.793136 64.0002C50.763 63.9189 63.9329 49.1545 64.0001 0.793138C64.0814 50.763 78.8459 63.9331 127.207 64.0003Z'
+              fill='#D9D9D9'
+            />
+            <path
+              d='M64.0001 0.793138C63.9325 49.4094 50.6238 64.0736 0 64.0003C49.2501 63.9247 64.0742 77.1022 64.0004 128C63.9248 78.7502 77.1023 63.9265 128 64.0002C79.0071 64.0755 64.0818 51.0351 64.0001 0.793138ZM64.0001 0.793138C64.0005 0.529756 64.0004 0.265378 64 0'
+              stroke='black'
+            />
+          </svg> */}
+        </SemiCircle>
+        <Oval></Oval>
+      </ShapeContainer>
+      {/* <ProjectContainer>
+        {projectData.map((proj, i) => (
+          <Project key={proj.title} {...proj} idx={i} />
+        ))}
+      </ProjectContainer> */}
+    </Container>
   )
 }

@@ -9,6 +9,9 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+  html {
+    background-color: #f3eee9;
+  }
 `
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)

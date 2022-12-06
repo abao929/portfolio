@@ -1,15 +1,5 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
-
-type Props = {
-  title: string
-  desc: string
-  link: string
-  img: string
-}
-
-const top = Math.floor(Math.random() * 30)
-const left = Math.floor(-Math.random() * 20) - 10
 
 const PanelHeader = styled.div`
   cursor: pointer;
@@ -36,6 +26,30 @@ const PanelHeader = styled.div`
     color: ${(props) => props.theme.secondary};
     font: 500 clamp(1.25rem, 1.5vw, 1.375rem) sans-serif;
   }
+  .extra {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font: 500 clamp(1rem, 1vw, 1.25rem) sans-serif;
+    color: ${(props) => props.theme.dark};
+    gap: 0.25rem;
+    div:first-child {
+      flex: 1;
+      text-align: right;
+    }
+    div:last-child {
+      flex: 1;
+      text-align: left;
+    }
+    .dot {
+      height: 6px;
+      width: 6px;
+      background-color: ${(props) => props.theme.dark};
+      border-radius: 50%;
+    }
+  }
 `
 
 const SideImage = styled.img`
@@ -57,10 +71,13 @@ const SideImage = styled.img`
   /* transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); */
 `
 
-const ClipImg = styled.div`
+const ClipImg = styled.div<{ top: number; isLeft: boolean; side: number }>`
   position: fixed;
-  top: ${top}vh;
-  left: ${left}vw;
+  top: ${(props) => props.top}vh;
+  ${(props) =>
+    props.isLeft
+      ? 'left: ' + props.side + 'vw;'
+      : 'right: ' + props.side + 'vw;'}
   -webkit-clip-path: circle(0);
   clip-path: circle(0);
   overflow: hidden;
@@ -74,11 +91,31 @@ const ClipImg = styled.div`
   }
 `
 
-export default function Project({ title, desc, img, link }: Props) {
+export default function Project({
+  title,
+  desc,
+  img,
+  link,
+  month,
+  time,
+  idx,
+}: Project & { idx: number }) {
   const [active, setActive] = useState(false)
+  const [top, setTop] = useState(0)
+  const [side, setSide] = useState(0)
+  useEffect(() => {
+    setTop(Math.floor(Math.random() * 10) + idx * 10)
+    setSide(Math.floor(-Math.random() * 5) - 5)
+  }, [])
   return (
     <div>
-      <ClipImg className={active ? 'active' : ''}>
+      <ClipImg
+        className={active ? 'active' : ''}
+        top={top}
+        isLeft={idx % 2 === 0}
+        side={side}
+      >
+        {/* <SideImage src={require(`${path}${img}`)} alt='' /> */}
         <SideImage src={require(`../assets/images/${img}`)} alt='' />
       </ClipImg>
       <PanelHeader
@@ -88,7 +125,12 @@ export default function Project({ title, desc, img, link }: Props) {
         <a href={link} target='_blank'>
           {title}
         </a>
-        <p>{desc}</p>
+        {/* <p>{desc}</p> */}
+        <div className='extra'>
+          <div className='l'>{month}</div>
+          <div className='dot'></div>
+          <div className='r'>{time}</div>
+        </div>
       </PanelHeader>
     </div>
   )

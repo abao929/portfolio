@@ -6,6 +6,9 @@ import Title from './components/Title'
 
 const theme = {
   primary: '#816b56',
+  primaryTint: '#8D7966',
+  // secondary: '#B4A69B',
+  dark: '#634832',
   secondary: '#dad0c6',
   bg: '#f3eee9',
 }
@@ -17,16 +20,8 @@ const Container = styled.div`
 export default function Main() {
   return (
     <ThemeProvider theme={theme}>
-      <Container>
-        {/* <Title /> */}
-        {/* <Projects></Projects> */}
-        <Project
-          title={'Personas & Storyboarding'}
-          desc={'not entirely sure what i am supposed to put for this section'}
-          link={'https://sombersheep77.github.io/uiux-project-1/'}
-          img={'cit.jpg'}
-        ></Project>
-      </Container>
+      <Title />
+      <Projects></Projects>
     </ThemeProvider>
   )
 }
