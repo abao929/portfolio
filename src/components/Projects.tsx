@@ -143,7 +143,9 @@ const Oval = styled.div`
   transform: rotate(-45deg);
 `
 
-const ProjectContainer = styled.div``
+const ProjectContainer = styled.div`
+  padding: 0 0 8vh 0;
+`
 
 const Text = styled.div`
   font: 400 italic 6vw 'Bodoni Mona';

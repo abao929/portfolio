@@ -24,7 +24,7 @@ const PanelHeader = styled.div`
   p {
     margin-top: auto;
     color: ${(props) => props.theme.secondary};
-    font: 500 clamp(1.25rem, 1.5vw, 1.375rem) sans-serif;
+    font: 500 clamp(1.25rem, 1.5vw, 1.375rem) ${(props) => props.theme.sans};
   }
   .extra {
     width: 100%;
@@ -32,7 +32,7 @@ const PanelHeader = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    font: 500 clamp(1rem, 1vw, 1.25rem) sans-serif;
+    font: 500 clamp(1rem, 1vw, 1.25rem) ${(props) => props.theme.sans};
     color: ${(props) => props.theme.dark};
     gap: 0.25rem;
     div:first-child {

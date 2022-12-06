@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { ThemeProvider } from 'styled-components'
+import About from './components/About'
 import Landing from './components/Landing'
 import Project from './components/Project'
 import Projects from './components/Projects'
@@ -12,6 +13,7 @@ const theme = {
   dark: '#634832',
   secondary: '#dad0c6',
   bg: '#f3eee9',
+  sans: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
 }
 
 const Container = styled.div`
@@ -23,7 +25,8 @@ export default function Main() {
     <ThemeProvider theme={theme}>
       {/* <Title /> */}
       <Landing />
-      <Projects></Projects>
+      <About />
+      <Projects />
     </ThemeProvider>
   )
 }
