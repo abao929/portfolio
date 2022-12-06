@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { ThemeProvider } from 'styled-components'
+import Landing from './components/Landing'
 import Project from './components/Project'
 import Projects from './components/Projects'
 import Title from './components/Title'
@@ -20,7 +21,8 @@ const Container = styled.div`
 export default function Main() {
   return (
     <ThemeProvider theme={theme}>
-      <Title />
+      {/* <Title /> */}
+      <Landing />
       <Projects></Projects>
     </ThemeProvider>
   )

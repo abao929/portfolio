@@ -8,4 +8,8 @@ declare global {
     desc: string
     time: string
   }
+  interface Position {
+    x: number
+    y: number
+  }
 }
