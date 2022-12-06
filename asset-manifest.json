@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.js": "/portfolio/static/js/main.77171085.js",
+    "static/media/cit.jpg": "/portfolio/static/media/cit.c0471ab011182162b57e.jpg",
+    "static/media/redesign.png": "/portfolio/static/media/redesign.b224828f14eb64af4179.png",
+    "static/media/ivrogne.png": "/portfolio/static/media/ivrogne.f92d418bb55fb8035cc3.png",
+    "index.html": "/portfolio/index.html",
+    "main.77171085.js.map": "/portfolio/static/js/main.77171085.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.77171085.js"
+  ]
+}
