@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import Project from './Project'
-import Star from '../assets/icons/Star'
+import { ProjectLine } from './Project'
 
 type Props = {}
 
@@ -52,14 +51,6 @@ const Stripes = styled.div`
   background-size: calc((88vw - 2px) / 8) 100%, calc((88vw - 2px) / 8) 97%;
   background-position-x: calc((88vw - 2px) / 8 / 2), calc((88vw - 2px) / 8); */
 `
-
-// const Middle = styled.div`
-//   position: absolute;
-//   height: 100%;
-//   left: 30vw;
-//   width: 40vw;
-//   background-color: ${(props) => props.theme.bg};
-// `
 
 const Middle = styled.div`
   position: absolute;
@@ -180,10 +171,19 @@ const star = (n: number) => {
 
 export default function Projects({}: Props) {
   const [projectData, setProjectData] = useState<Project[]>([])
+  const [states, setStates] = useState<number[]>([])
+  // -1, 0, 1
+  console.log(projectData)
 
   const getProjectData = () => {
-    fetch('projects.json')
+    fetch('projects.json', {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    })
       .then((r) => {
+        console.log('ayo wtf', r)
         return r.json()
       })
       .then((json: Project[]) => {
@@ -197,6 +197,7 @@ export default function Projects({}: Props) {
 
   useEffect(() => {
     getProjectData()
+    setStates(new Array(projectData.length).fill(0))
   }, [])
 
   return (
@@ -215,7 +216,13 @@ export default function Projects({}: Props) {
       </ShapeContainer>
       <ProjectContainer>
         {projectData.map((proj, i) => (
-          <Project key={proj.title} {...proj} idx={i + 1} />
+          <ProjectLine
+            key={proj.title}
+            {...proj}
+            idx={i}
+            states={states}
+            setStates={setStates}
+          />
         ))}
       </ProjectContainer>
     </Container>

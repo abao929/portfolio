@@ -11,7 +11,13 @@ const PanelHeader = styled.div`
   gap: 1rem;
   transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   color: ${(props) => props.theme.primary};
+  transition: transform 0.3s ease-out;
   &:hover {
+    -webkit-transform: translateY(0.5rem);
+    transform: translateY(0.5rem);
+    color: ${(props) => props.theme.dark};
+  }
+  &.blurred {
     opacity: 0.5;
   }
   a {
@@ -65,7 +71,7 @@ const SideImage = styled.img`
     }
   }
   /* display: inline; */
-  height: calc(min(50vw, 70vh));
+  height: calc(60vmin);
   width: auto;
   animation: pulse 12s linear infinite;
   /* transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); */
@@ -86,12 +92,12 @@ const ClipImg = styled.div<{ top: number; isLeft: boolean; side: number }>`
   align-items: center;
   transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   &.active {
-    -webkit-clip-path: circle(calc(min(25vw, 35vh)));
-    clip-path: circle(calc(min(25vw, 35vh)));
+    -webkit-clip-path: circle(30vmin);
+    clip-path: circle(30vmin);
   }
 `
 
-export default function Project({
+const ProjectLine = ({
   title,
   desc,
   img,
@@ -99,28 +105,39 @@ export default function Project({
   month,
   time,
   idx,
-}: Project & { idx: number }) {
+  states,
+  setStates,
+}: Project & {
+  idx: number
+  states: number[]
+  setStates: React.Dispatch<React.SetStateAction<number[]>>
+}) => {
   const [active, setActive] = useState(false)
   const [top, setTop] = useState(0)
   const [side, setSide] = useState(0)
   useEffect(() => {
-    setTop(Math.floor(Math.random() * 10) + idx * 10)
-    setSide(Math.floor(-Math.random() * 5) - 5)
+    setTop(Math.floor(Math.random() * 10) + idx * 12)
+    setSide(Math.floor(-Math.random() * 5) - 7)
   }, [])
   return (
     <div>
       <ClipImg
-        className={active ? 'active' : ''}
+        className={states[idx] === 1 ? 'active' : ''}
         top={top}
-        isLeft={idx % 2 === 0}
+        isLeft={idx % 2 !== 0}
         side={side}
       >
         {/* <SideImage src={require(`${path}${img}`)} alt='' /> */}
         <SideImage src={require(`../assets/images/${img}`)} alt='' />
       </ClipImg>
       <PanelHeader
-        onMouseEnter={() => setActive(true)}
-        onMouseLeave={() => setActive(false)}
+        onMouseEnter={() => {
+          let tempStates = new Array(states.length).fill(-1)
+          tempStates[idx] = 1
+          setStates(tempStates)
+        }}
+        onMouseLeave={() => setStates(new Array(states.length).fill(0))}
+        className={states[idx] === -1 ? 'blurred' : ''}
       >
         <a href={link} target='_blank'>
           {title}
@@ -135,3 +152,17 @@ export default function Project({
     </div>
   )
 }
+
+const ProjectPage = ({
+  title,
+  desc,
+  img,
+  link,
+  month,
+  time,
+  idx,
+}: Project & { idx: number }) => {
+  return <div>What</div>
+}
+
+export { ProjectLine, ProjectPage }

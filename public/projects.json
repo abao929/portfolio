@@ -2,14 +2,38 @@
   {
     "title": "Personas",
     "month": "September",
+    "year": "2022",
     "time": "2 weeks",
     "link": "https://sombersheep77.github.io/uiux-project-1/",
-    "img": "cit.jpg",
-    "desc": "observations about the CIT elevator"
+    "img": "personas.png",
+    "desc": "observations about the CIT elevator",
+    "content": [
+      {
+        "header": "",
+        "body": "",
+        "imgs": []
+      },
+      {
+        "header": "",
+        "body": "",
+        "imgs": []
+      },
+      {
+        "header": "",
+        "body": "",
+        "imgs": []
+      },
+      {
+        "header": "",
+        "body": "",
+        "imgs": []
+      }
+    ]
   },
   {
     "title": "Responsive Redesign",
     "month": "October",
+    "year": "2022",
     "time": "2 weeks",
     "link": "https://sombersheep77.github.io/uiux-project-2/",
     "img": "redesign.png",
@@ -18,9 +42,19 @@
   {
     "title": "Development",
     "month": "November",
+    "year": "2022",
     "time": "3 weeks",
     "link": "https://sombersheep77.github.io/ivrogne/",
     "img": "ivrogne.png",
     "desc": "website to find cocktail recipes and the necessary ingredients to make your favorite drinks."
+  },
+  {
+    "title": "Lucidity",
+    "month": "May",
+    "year": "2022",
+    "time": "1 month",
+    "link": "https://sombersheep77.github.io/ivrogne/",
+    "img": "ivrogne.png",
+    "desc": "spotify wrapped but for texts"
   }
 ]

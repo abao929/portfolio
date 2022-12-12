@@ -2,7 +2,6 @@ import React from 'react'
 import styled, { ThemeProvider } from 'styled-components'
 import About from './components/About'
 import Landing from './components/Landing'
-import Project from './components/Project'
 import Projects from './components/Projects'
 import Title from './components/Title'
 
