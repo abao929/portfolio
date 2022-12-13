@@ -1,8 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 const PanelHeader = styled.div`
   cursor: pointer;
+  width: 40%;
+  margin: 0 auto;
   padding: 20px 0;
   display: flex;
   flex-direction: column;
@@ -20,7 +23,7 @@ const PanelHeader = styled.div`
   &.blurred {
     opacity: 0.5;
   }
-  a {
+  .title {
     word-break: break-word;
     text-transform: lowercase;
     font: 400 clamp(2rem, 5vw, 5rem) / 1em 'Bodoni Mona';
@@ -101,6 +104,7 @@ const ProjectLine = ({
   title,
   desc,
   img,
+  url,
   link,
   month,
   time,
@@ -115,6 +119,7 @@ const ProjectLine = ({
   const [active, setActive] = useState(false)
   const [top, setTop] = useState(0)
   const [side, setSide] = useState(0)
+  const navigate = useNavigate()
   useEffect(() => {
     setTop(Math.floor(Math.random() * 10) + idx * 12)
     setSide(Math.floor(-Math.random() * 5) - 7)
@@ -128,7 +133,7 @@ const ProjectLine = ({
         side={side}
       >
         {/* <SideImage src={require(`${path}${img}`)} alt='' /> */}
-        <SideImage src={require(`../assets/images/${img}`)} alt='' />
+        <SideImage src={require(`../assets/images/${url}/${img}`)} alt='' />
       </ClipImg>
       <PanelHeader
         onMouseEnter={() => {
@@ -138,10 +143,9 @@ const ProjectLine = ({
         }}
         onMouseLeave={() => setStates(new Array(states.length).fill(0))}
         className={states[idx] === -1 ? 'blurred' : ''}
+        onClick={() => navigate(`/${url}`)}
       >
-        <a href={link} target='_blank'>
-          {title}
-        </a>
+        <div className='title'>{title}</div>
         {/* <p>{desc}</p> */}
         <div className='extra'>
           <div className='l'>{month}</div>
@@ -153,6 +157,67 @@ const ProjectLine = ({
   )
 }
 
+const Container = styled.div`
+  padding: 0 10vw;
+  display: flex;
+  flex-direction: column;
+`
+
+const PageTitle = styled.div`
+  text-align: center;
+  font: 600 calc(max(6rem, 6vw)) ${(props) => props.theme.sans};
+  color: ${(props) => props.theme.dark};
+  text-transform: uppercase;
+`
+
+const PageDesc = styled.div`
+  text-align: center;
+  font: 400 calc(max(1.75rem, 1.75vw)) ${(props) => props.theme.sans};
+  color: ${(props) => props.theme.primary};
+`
+
+const ImageCard = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: auto;
+  padding: 4vw;
+  border-radius: 2vw;
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 2vw;
+    max-height: 70vh;
+    width: auto;
+  }
+  background-color: ${(props) => props.theme.primary};
+`
+
+const Section = styled.div`
+  margin: 3vh 0;
+  h1 {
+    font: 600 calc(max(3rem, 3vw)) ${(props) => props.theme.sans};
+    color: ${(props) => props.theme.dark};
+  }
+
+  p {
+    font: 400 calc(max(1rem, 1vw)) ${(props) => props.theme.sans};
+    color: ${(props) => props.theme.dark};
+    white-space: pre-line;
+  }
+`
+
+const BackButton = styled.div`
+  position: fixed;
+  left: 2vw;
+  top: 2vw;
+  cursor: pointer;
+  font: 500 calc(max(1rem, 1vw)) ${(props) => props.theme.sans};
+  color: ${(props) => props.theme.primary};
+  &:hover {
+  }
+`
+
 const ProjectPage = ({
   title,
   desc,
@@ -160,9 +225,38 @@ const ProjectPage = ({
   link,
   month,
   time,
+  content,
   idx,
 }: Project & { idx: number }) => {
-  return <div>What</div>
+  const navigate = useNavigate()
+  return (
+    <Container>
+      <BackButton>
+        {/* <svg
+          width='26'
+          height='22'
+          viewBox='0 0 26 22'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path d='M1 11L11 1M1 11L11 21M1 11H26' stroke='black' />
+        </svg> */}
+        {/* <a href='/'>"BACK"</a> */}
+        <div onClick={() => navigate(-1)}>"BACK BUTTON"</div>
+      </BackButton>
+      <PageTitle>{title}</PageTitle>
+      <PageDesc>{desc}</PageDesc>
+      {content.map((section, idx) => (
+        <Section>
+          <h1>{section.header}</h1>
+          <p>{section.body}</p>
+        </Section>
+      ))}
+      {/* <ImageCard>
+        <img src={require('../assets/images/ivrogne.png')} alt='' />
+      </ImageCard> */}
+    </Container>
+  )
 }
 
 export { ProjectLine, ProjectPage }

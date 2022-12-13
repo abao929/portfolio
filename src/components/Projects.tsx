@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import { useEffect } from 'react'
 import styled from 'styled-components'
-import { ProjectLine } from './Project'
-
-type Props = {}
+import { ProjectLine, ProjectPage } from './Project'
 
 const circleWidth = 34
 const circleHeight = 24
@@ -169,37 +168,9 @@ const star = (n: number) => {
   )
 }
 
-export default function Projects({}: Props) {
-  const [projectData, setProjectData] = useState<Project[]>([])
+export default function Projects({ projects }: { projects: Project[] }) {
   const [states, setStates] = useState<number[]>([])
-  // -1, 0, 1
-  console.log(projectData)
-
-  const getProjectData = () => {
-    fetch('projects.json', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    })
-      .then((r) => {
-        console.log('ayo wtf', r)
-        return r.json()
-      })
-      .then((json: Project[]) => {
-        // json.map((project) => {
-        //   project.img = `${pathToImages}${project.img}`
-        //   return project
-        // })
-        setProjectData(json)
-      })
-  }
-
-  useEffect(() => {
-    getProjectData()
-    setStates(new Array(projectData.length).fill(0))
-  }, [])
-
+  useEffect(() => setStates(new Array(projects.length).fill(0)), [])
   return (
     <Container>
       <Stripes></Stripes>
@@ -215,9 +186,9 @@ export default function Projects({}: Props) {
         <Oval></Oval>
       </ShapeContainer>
       <ProjectContainer>
-        {projectData.map((proj, i) => (
+        {projects.map((proj, i) => (
           <ProjectLine
-            key={proj.title}
+            key={`${proj.title}`}
             {...proj}
             idx={i}
             states={states}

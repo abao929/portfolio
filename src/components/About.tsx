@@ -85,7 +85,7 @@ const TextColumns = styled.div`
   padding: 10vh 0 8vh 0;
   gap: 2.5rem;
   font: 500 calc(max(0.875rem, 0.875vw)) ${(props) => props.theme.sans};
-  color: ${(props) => props.theme.dark};
+  color: ${(props) => props.theme.primary};
   & > div {
     flex: 1;
   }
@@ -117,34 +117,34 @@ const TextColumns = styled.div`
   }
 `
 
-const ShapeContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* border: 1px solid blue; */
-  /* padding: 0 0 6vh 0; */
-`
+// const ShapeContainer = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   /* border: 1px solid blue; */
+//   /* padding: 0 0 6vh 0; */
+// `
 
-const CIRCLE_WIDTH = 40
-const SHAPE_WIDTH = CIRCLE_WIDTH + 20
+// const CIRCLE_WIDTH = 40
+// const SHAPE_WIDTH = CIRCLE_WIDTH + 20
 
-const SemiCircle = styled.div`
-  position: relative;
-  height: ${CIRCLE_WIDTH / 2}vw;
-  width: ${CIRCLE_WIDTH}vw;
-  border-radius: 0 0 ${CIRCLE_WIDTH / 2}vw ${CIRCLE_WIDTH / 2}vw;
-  background-color: ${(props) => props.theme.primary};
-`
+// const SemiCircle = styled.div`
+//   position: relative;
+//   height: ${CIRCLE_WIDTH / 2}vw;
+//   width: ${CIRCLE_WIDTH}vw;
+//   border-radius: 0 0 ${CIRCLE_WIDTH / 2}vw ${CIRCLE_WIDTH / 2}vw;
+//   background-color: ${(props) => props.theme.primary};
+// `
 
-const Shape = styled.div`
-  position: absolute;
-  margin-top: 5vw;
-  height: 80vh;
-  width: ${SHAPE_WIDTH}vw;
-  z-index: -1;
-  border-radius: ${SHAPE_WIDTH / 2}vw ${SHAPE_WIDTH / 2}vw 0 0;
-  background-color: ${(props) => props.theme.secondary};
-`
+// const Shape = styled.div`
+//   position: absolute;
+//   margin-top: 5vw;
+//   height: 80vh;
+//   width: ${SHAPE_WIDTH}vw;
+//   z-index: -1;
+//   border-radius: ${SHAPE_WIDTH / 2}vw ${SHAPE_WIDTH / 2}vw 0 0;
+//   background-color: ${(props) => props.theme.secondary};
+// `
 
 const Side = styled.div`
   flex: 2;
