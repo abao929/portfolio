@@ -1,13 +1,25 @@
 {
   "files": {
-    "main.js": "/portfolio/static/js/main.8cd82e66.js",
-    "static/media/cit.jpg": "/portfolio/static/media/cit.c0471ab011182162b57e.jpg",
+    "main.js": "/portfolio/static/js/main.60a71eee.js",
     "static/media/redesign.png": "/portfolio/static/media/redesign.b224828f14eb64af4179.png",
+    "static/media/issues.png": "/portfolio/static/media/issues.88c90d8207969e49b665.png",
     "static/media/ivrogne.png": "/portfolio/static/media/ivrogne.f92d418bb55fb8035cc3.png",
+    "static/media/amazon.png": "/portfolio/static/media/amazon.a13c6e92cb75e4ddb7c0.png",
+    "static/media/target.png": "/portfolio/static/media/target.6c61ca0963653cfe8a7d.png",
+    "static/media/persona_2.png": "/portfolio/static/media/persona_2.44f729cbc5f0cf669582.png",
+    "static/media/persona_1.png": "/portfolio/static/media/persona_1.fe1de116bf474d6dbd10.png",
+    "static/media/personas.png": "/portfolio/static/media/personas.c18e49bebcb5caf0ac8e.png",
+    "static/media/panel_6.png": "/portfolio/static/media/panel_6.55e32b56c506b7849e63.png",
+    "static/media/panel_5.png": "/portfolio/static/media/panel_5.aba409522729ead0e9bf.png",
+    "static/media/panel_1.png": "/portfolio/static/media/panel_1.a62582bb87679ed0199c.png",
+    "static/media/panel_7.png": "/portfolio/static/media/panel_7.7deef7c1102de1452493.png",
+    "static/media/panel_3.png": "/portfolio/static/media/panel_3.9b80e97456769f178d0d.png",
+    "static/media/panel_2.png": "/portfolio/static/media/panel_2.b2eae78893fac3b4f708.png",
+    "static/media/panel_4.png": "/portfolio/static/media/panel_4.fd895700c6a41547204a.png",
     "index.html": "/portfolio/index.html",
-    "main.8cd82e66.js.map": "/portfolio/static/js/main.8cd82e66.js.map"
+    "main.60a71eee.js.map": "/portfolio/static/js/main.60a71eee.js.map"
   },
   "entrypoints": [
-    "static/js/main.8cd82e66.js"
+    "static/js/main.60a71eee.js"
   ]
 }
