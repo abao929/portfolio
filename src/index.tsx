@@ -48,7 +48,7 @@ root.render(
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Main projects={PROJECT_DATA} />} />
+          <Route path='portfolio' element={<Main projects={PROJECT_DATA} />} />
           <Route
             path='lucidity'
             element={<ProjectPage {...PROJECT_DATA[0]} idx={0} />}

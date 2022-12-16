@@ -3,7 +3,7 @@ declare global {
   interface Section {
     header: string
     body: string
-    imgs?: string[]
+    imgs?: string[][]
   }
   interface Project {
     title: string

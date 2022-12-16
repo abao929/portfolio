@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useEffect } from 'react'
 import styled from 'styled-components'
-import { ProjectLine, ProjectPage } from './Project'
+import { ProjectLine } from './Project'
 
 const circleWidth = 34
 const circleHeight = 24

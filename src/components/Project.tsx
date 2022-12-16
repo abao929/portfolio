@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -116,7 +116,6 @@ const ProjectLine = ({
   states: number[]
   setStates: React.Dispatch<React.SetStateAction<number[]>>
 }) => {
-  const [active, setActive] = useState(false)
   const [top, setTop] = useState(0)
   const [side, setSide] = useState(0)
   const navigate = useNavigate()
@@ -179,18 +178,28 @@ const PageDesc = styled.div`
 const ImageCard = styled.div`
   display: flex;
   justify-content: center;
-  margin: 0 auto;
-  width: auto;
-  padding: 4vw;
-  border-radius: 2vw;
-  img {
-    width: 100%;
-    height: auto;
-    border-radius: 2vw;
-    max-height: 70vh;
-    width: auto;
-  }
+  box-sizing: border-box;
+  padding: 2vw;
+  border-radius: 1vw;
+  /* width: 100%; */
   background-color: ${(props) => props.theme.primary};
+  margin: 0 auto;
+  img {
+    margin: 0 auto;
+    height: auto;
+    border-radius: 1vw;
+    width: auto;
+    max-width: 100%;
+    max-height: 100vh;
+  }
+`
+
+const ImageGallery = styled.div<{ n: number }>`
+  display: grid;
+  gap: 2em;
+  grid-template-columns: repeat(${(props) => Math.min(props.n, 3)}, 1fr);
+  width: 100%;
+  padding: 3vh 0;
 `
 
 const Section = styled.div`
@@ -199,11 +208,11 @@ const Section = styled.div`
     font: 600 calc(max(3rem, 3vw)) ${(props) => props.theme.sans};
     color: ${(props) => props.theme.dark};
   }
-
   p {
     font: 400 calc(max(1rem, 1vw)) ${(props) => props.theme.sans};
     color: ${(props) => props.theme.dark};
     white-space: pre-line;
+    padding: 0.5em 0;
   }
 `
 
@@ -225,6 +234,7 @@ const ProjectPage = ({
   link,
   month,
   time,
+  url,
   content,
   idx,
 }: Project & { idx: number }) => {
@@ -242,7 +252,7 @@ const ProjectPage = ({
           <path d='M1 11L11 1M1 11L11 21M1 11H26' stroke='black' />
         </svg> */}
         {/* <a href='/'>"BACK"</a> */}
-        <div onClick={() => navigate(-1)}>"BACK BUTTON"</div>
+        <div onClick={() => navigate(-1)}>"BACK"</div>
       </BackButton>
       <PageTitle>{title}</PageTitle>
       <PageDesc>{desc}</PageDesc>
@@ -250,6 +260,19 @@ const ProjectPage = ({
         <Section>
           <h1>{section.header}</h1>
           <p>{section.body}</p>
+          {section.imgs?.map((gallery, _) => (
+            <ImageGallery n={gallery.length}>
+              {gallery.map((img, _) => (
+                <ImageCard>
+                  <img
+                    src={require(`../assets/images/${url}/${img}`)}
+                    alt=''
+                    className='card'
+                  />
+                </ImageCard>
+              ))}
+            </ImageGallery>
+          ))}
         </Section>
       ))}
       {/* <ImageCard>
